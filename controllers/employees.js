@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
   try {
-    const result = await mongodb.getDatabase().db().collection('employees').find();
+    const result = await mongodb.getDatabase().db('project2').collection('employees').find();
     const employees = await result.toArray();
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(employees);
@@ -18,7 +18,7 @@ const getSingle = async (req, res) => {
       return res.status(400).json({ message: 'Must use a valid employee id.' });
     }
     const employeeId = new ObjectId(req.params.id);
-    const employee = await mongodb.getDatabase().db().collection('employees').findOne({ _id: employeeId });
+    const employee = await mongodb.getDatabase().db('project2').collection('employees').findOne({ _id: employeeId });
     if (!employee) {
       return res.status(404).json({ message: 'Employee not found.' });
     }
@@ -46,7 +46,7 @@ const createEmployee = async (req, res) => {
       hireDate
     };
 
-    const response = await mongodb.getDatabase().db().collection('employees').insertOne(employee);
+    const response = await mongodb.getDatabase().db('project2').collection('employees').insertOne(employee);
     if (response.acknowledged) {
       res.status(201).json(response.insertedId);
     } else {
@@ -79,8 +79,7 @@ const updateEmployee = async (req, res) => {
       hireDate
     };
 
-    const response = await mongodb
-      .getDatabase()
+    const response = await mongodb.getDatabase()
       .db()
       .collection('employees')
       .replaceOne({ _id: employeeId }, employee);
@@ -100,7 +99,7 @@ const deleteEmployee = async (req, res) => {
       return res.status(400).json({ message: 'Invalid ID for deletion.' });
     }
     const employeeId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('employees').deleteOne({ _id: employeeId });
+    const response = await mongodb.getDatabase().db('project2').collection('employees').deleteOne({ _id: employeeId });
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {

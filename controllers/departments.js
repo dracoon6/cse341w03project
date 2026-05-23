@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
   try {
-    const result = await mongodb.getDatabase().db().collection('departments').find();
+    const result = await mongodb.getDatabase().db('project2').collection('departments').find();
     const departments = await result.toArray();
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(departments);
@@ -18,7 +18,7 @@ const getSingle = async (req, res) => {
       return res.status(400).json({ message: 'Must use a valid department id.' });
     }
     const deptId = new ObjectId(req.params.id);
-    const department = await mongodb.getDatabase().db().collection('departments').findOne({ _id: deptId });
+    const department = await mongodb.getDatabase().db('project2').collection('departments').findOne({ _id: deptId });
     if (!department) {
       return res.status(404).json({ message: 'Department not found.' });
     }
@@ -36,7 +36,7 @@ const createDept = async (req, res) => {
       return res.status(400).json({ message: 'deptName, manager, and location are required fields.' });
     }
     const department = { deptName, manager, location };
-    const response = await mongodb.getDatabase().db().collection('departments').insertOne(department);
+    const response = await mongodb.getDatabase().db('project2').collection('departments').insertOne(department);
     if (response.acknowledged) {
       res.status(201).json(response.insertedId);
     } else {
@@ -79,7 +79,7 @@ const deleteDept = async (req, res) => {
       return res.status(400).json({ message: 'Invalid ID for deletion.' });
     }
     const deptId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('departments').deleteOne({ _id: deptId });
+    const response = await mongodb.getDatabase().db('project2').collection('departments').deleteOne({ _id: deptId });
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {
