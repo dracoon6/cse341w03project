@@ -80,7 +80,7 @@ const updateEmployee = async (req, res) => {
     };
 
     const response = await mongodb.getDatabase()
-      .db()
+      .db('project2')
       .collection('employees')
       .replaceOne({ _id: employeeId }, employee);
     if (response.matchedCount > 0) {

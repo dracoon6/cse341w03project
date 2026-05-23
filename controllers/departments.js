@@ -59,8 +59,7 @@ const updateDept = async (req, res) => {
     const deptId = new ObjectId(req.params.id);
     const department = { deptName, manager, location };
     const response = await mongodb
-      .getDatabase()
-      .db()
+      .getDatabase().db('project2')
       .collection('departments')
       .replaceOne({ _id: deptId }, department);
     if (response.matchedCount > 0) {
