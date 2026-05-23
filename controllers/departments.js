@@ -80,7 +80,7 @@ const deleteDept = async (req, res) => {
     const deptId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db('project2').collection('departments').deleteOne({ _id: deptId });
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(204).send({ message: 'Department deleted successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while deleting the department.' });
     }

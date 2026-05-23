@@ -101,7 +101,7 @@ const deleteEmployee = async (req, res) => {
     const employeeId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db('project2').collection('employees').deleteOne({ _id: employeeId });
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(204).send({ message: 'Employee deleted successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while deleting the employee.' });
     }
