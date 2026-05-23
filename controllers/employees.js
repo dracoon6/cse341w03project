@@ -31,7 +31,6 @@ const getSingle = async (req, res) => {
 
 const createEmployee = async (req, res) => {
   try {
-    // Requirement: At least 7 fields
     const { firstName, lastName, email, jobTitle, salary, deptId, hireDate } = req.body;
     if (!firstName || !lastName || !email || !jobTitle || !salary || !deptId || !hireDate) {
       return res.status(400).json({ message: 'All 7 fields are required: firstName, lastName, email, jobTitle, salary, deptId, hireDate' });

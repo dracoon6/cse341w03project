@@ -5,7 +5,7 @@ const doc = {
     title: 'Employee and Department API',
     description: 'API for managing company staff and departments',
   },
-  host: 'localhost:3000',
+  host: 'cse341w03project.onrender.com',
   schemes: ['http', 'https'],
 };
 
