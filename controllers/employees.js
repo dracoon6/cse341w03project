@@ -84,7 +84,7 @@ const updateEmployee = async (req, res) => {
       .collection('employees')
       .replaceOne({ _id: employeeId }, employee);
     if (response.matchedCount > 0) {
-      res.status(204).send();
+      res.status(204).send({ message: 'Employee updated successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while updating the employee.' });
     }

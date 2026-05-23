@@ -63,7 +63,7 @@ const updateDept = async (req, res) => {
       .collection('departments')
       .replaceOne({ _id: deptId }, department);
     if (response.matchedCount > 0) {
-      res.status(204).send();
+      res.status(204).send({ message: 'Department updated successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while updating the department.' });
     }
