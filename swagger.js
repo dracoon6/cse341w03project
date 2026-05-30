@@ -6,7 +6,7 @@ const doc = {
     description: 'API for managing company staff and departments',
   },
   host: 'cse341w03project.onrender.com',
-  schemes: ['http', 'https'],
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
