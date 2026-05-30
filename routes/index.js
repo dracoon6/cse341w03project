@@ -5,8 +5,8 @@ const passport = require('passport');
 router.use('/', require('./swagger'));
 router.get('/', (req, res) => {
   res.send(req.session.user !== undefined 
-    ? `Logged in as ${req.session.user.displayName} <br><br><button onclick="location.href='/logout'">Logout</button> <button onclick="location.href='/api-docs'">API Documentation</button>` 
-    : "Logged Out <br><br><button onclick=\"location.href='/login'\">Login</button> <button onclick=\"location.href='/api-docs'\">swagger");
+    ? `Logged in as ${req.session.user.displayName} <br><br><button onclick="location.href='/logout'">Logout</button> <button onclick="location.href='/api-docs'">swagger</button>` 
+    : "Logged Out <br><br><button onclick=\"location.href='/login'\">Login</button> <button onclick=\"location.href='/api-docs'\">swagger</button>");
 });
 
 router.use('/employees', require('./employees'));
