@@ -63,7 +63,7 @@ const updateDept = async (req, res) => {
       .collection('departments')
       .replaceOne({ _id: deptId }, department);
     if (response.matchedCount > 0) {
-      res.status(204).send({ message: 'Department updated successfully.' });
+      res.status(200).send({ message: 'Department updated successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while updating the department.' });
     }
@@ -80,7 +80,7 @@ const deleteDept = async (req, res) => {
     const deptId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db('project2').collection('departments').deleteOne({ _id: deptId });
     if (response.deletedCount > 0) {
-      res.status(204).send({ message: 'Department deleted successfully.' });
+      res.status(200).send({ message: 'Department deleted successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while deleting the department.' });
     }

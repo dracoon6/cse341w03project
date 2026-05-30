@@ -84,7 +84,7 @@ const updateEmployee = async (req, res) => {
       .collection('employees')
       .replaceOne({ _id: employeeId }, employee);
     if (response.matchedCount > 0) {
-      res.status(204).send({ message: 'Employee updated successfully.' });
+      res.status(200).send({ message: 'Employee updated successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while updating the employee.' });
     }
@@ -101,7 +101,7 @@ const deleteEmployee = async (req, res) => {
     const employeeId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db('project2').collection('employees').deleteOne({ _id: employeeId });
     if (response.deletedCount > 0) {
-      res.status(204).send({ message: 'Employee deleted successfully.' });
+      res.status(200).send({ message: 'Employee deleted successfully.' });
     } else {
       res.status(500).json({ message: 'Error occurred while deleting the employee.' });
     }
